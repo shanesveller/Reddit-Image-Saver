@@ -65,20 +65,21 @@ urls.each_pair do |name, url|
   end
 end
 
+def is_picture?(file)
+  valid = true 
+  valid = false if file =~ /^.+\.(?i)((bmp)|(gif)|(jpeg)|(jpg)|(png)|(tiff))$/
+  valid = true  if file =~ /^.+\.(?i)(php)/
+  valid
+end
 
 # Remove non-pictures
 urls.reject! do |name, url|
-  valid = true 
-
-  valid = false  if url =~ /^.+\.(?i)((bmp)|(gif)|(jpeg)|(jpg)|(png)|(tiff))$/
-  valid = true if url =~ /^.+\.(?i)(php)/
-  valid
+  is_picture?(url)
 end
 
 
 # Make directory for pictures
 FileUtils.mkdir_p dir
-
 
 
 # Follow redirects
