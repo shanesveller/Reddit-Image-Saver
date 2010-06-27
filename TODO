@@ -1,0 +1,7 @@
+= TODO
+Add 'all' sort_type 
+Add search time  ex. 'today', 'week', 'month', 'all'
+Place code into methods
+
+= Future Plans
+Port code to Java with GUI
