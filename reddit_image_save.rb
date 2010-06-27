@@ -23,15 +23,19 @@ dir = 'Saved Reddit Pics'
 ##########################################################################
   
 # Generate custom Reddit URL
-reddits.sort!
-custom_url = "http://www.reddit.com/r/"
-reddits.each do |reddit|
-    custom_url += reddit + "+"
+def generate_custom_url(reddit_list, sort)
+  reddit_list.sort!
+  url = "http://www.reddit.com/r/"
+  reddit_list.each do |reddit|
+      url += reddit + "+"
+  end
+  url.chop!
+  if sort != 'hot'
+    url += "/#{sort}"
+  end
 end
-custom_url.chop!
-if sort_type != 'hot'
-  custom_url += "/#{sort_type}"
-end
+
+custom_url = generate_custom_url(reddits, sort_type)
 puts "Your Personal URL:  #{custom_url}\n"
 puts "--------------------#{print '-' * custom_url.length}"
 
