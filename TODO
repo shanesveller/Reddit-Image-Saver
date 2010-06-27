@@ -2,6 +2,7 @@
 Add 'all' sort_type 
 Add search time  ex. 'today', 'week', 'month', 'all'
 Place code into methods
+ADD DOCUMENTATION!!!
 
 = Future Plans
 Port code to Java with GUI
