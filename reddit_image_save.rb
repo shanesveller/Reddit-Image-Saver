@@ -107,16 +107,22 @@ def sanitize(s)
 end
 
 
-# Download files
-urls.each_pair do |name, url|
+def download_file(url, path)
   response = fetch(url)
   Net::HTTP.start(URI.parse(url).host) do |http|
-    puts "Downloading: #{name}\n\t#{url}\n\n"
     ext = url.match(/\.([^\.]+)$/).to_a.last
-    open("#{dir}/#{sanitize(name)}.#{ext.downcase}", 'w') do |file|
+    open(path, 'w') do |file|
       file.write(response.body)
     end
   end
+end
+
+
+# Download files
+urls.each_pair do |name, url|
+    puts "Downloading: #{name}\n\t#{url}\n\n"
+    ext = url.match(/\.([^\.]+)$/).to_a.last
+    download_file(url, "#{dir}/#{sanitize(name)}.#{ext.downcase}")
 end
 
 puts 'Downloading Complete'
