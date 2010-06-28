@@ -41,11 +41,14 @@ puts "--------------------#{print '-' * custom_url.length}"
 
 
 # Get source of page
-url = URI.parse(custom_url)
-req = Net::HTTP::Get.new(url.path)
-res = Net::HTTP.start(url.host, url.port) do |http|
-  http.request(req)
+def get_page_source(page_url)
+  url = URI.parse(page_url)
+  req = Net::HTTP::Get.new(url.path)
+  Net::HTTP.start(url.host, url.port) do |http|
+    http.request(req)
+  end
 end
+res = get_page_source(custom_url)
 
 
 # Add URLs and Title to hash
