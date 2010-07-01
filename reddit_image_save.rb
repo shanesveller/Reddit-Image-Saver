@@ -30,7 +30,9 @@ def generate_custom_url(reddit_list, sort)
       url += reddit + "+"
   end
   url.chop!
-  if sort != 'hot'
+  if sort == 'new'
+    url += '/new?sort=new'
+  elsif sort != 'hot'
     url += "/#{sort}"
   end
   url
