@@ -66,7 +66,7 @@ urls.each_pair do |name, url|
     url.insert(url.index(/(?i)(imgur\.com).*$/), 'i.')
 
     # i.imgur.com/1234 -> i.imgur.com/1234.jpg
-    unless url =~ /^.*\.(?i)(jpg)$/
+    unless url =~ /^.*\.(?i)((bmp)|(gif)|(jpeg)|(jpg)|(png)|(tiff))$/
       url.concat(".jpg")
     end
   end
