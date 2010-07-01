@@ -13,7 +13,7 @@ require 'uri'
 reddits = ['Jailbait', 'SceneGirls', 'LegalTeens', 'Ass', 'HighHeels', 'RealGirls', 'SexyButNotPorn'] 
 
 # Desired sorting
-sort_type = 'hot' # hot, new, controversial, top
+sort_type = 'new' # hot, new, controversial, top
 
 # Folder to save pictures to
 dir = 'Saved Reddit Pics'
@@ -55,7 +55,7 @@ res = get_page_source(custom_url)
 # Add URLs and Title to hash
 urls = {}
 doc = Hpricot.parse(res.body)
-(doc/'.content'/'.spacer'/'#siteTable'/'.thing'/'.entry'/'.title'/:a/'.title').each do |link|
+(doc/'.content'/'#siteTable'/'.thing'/'.entry'/'.title'/:a/'.title').each do |link|
   urls[link.inner_text] = link.attributes["href"]
 end
 puts urls.inspect
