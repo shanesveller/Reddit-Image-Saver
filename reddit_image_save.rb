@@ -33,6 +33,7 @@ def generate_custom_url(reddit_list, sort)
   if sort != 'hot'
     url += "/#{sort}"
   end
+  url
 end
 
 custom_url = generate_custom_url(reddits, sort_type)
