@@ -13,7 +13,7 @@ require 'uri'
 reddits = ['Jailbait', 'SceneGirls', 'LegalTeens', 'Ass', 'HighHeels', 'RealGirls', 'SexyButNotPorn'] 
 
 # Desired sorting
-sort_type = 'new' # hot, new, controversial, top
+sort_type = 'top' # hot, new, controversial, top
 
 # Folder to save pictures to
 dir = 'Saved Reddit Pics'
@@ -58,7 +58,6 @@ doc = Hpricot.parse(res.body)
 (doc/'.content'/'#siteTable'/'.thing'/'.entry'/'.title'/:a/'.title').each do |link|
   urls[link.inner_text] = link.attributes["href"]
 end
-puts urls.inspect
 
 # Fix ugly imgur URLs
 urls.each_pair do |name, url|
