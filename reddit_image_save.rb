@@ -10,7 +10,7 @@ require 'uri'
 ##########################################################################
 
 # Put your favorite Reddits here
-reddits = ['Jailbait', 'SceneGirls', 'LegalTeens', 'Ass', 'HighHeels', 'RealGirls', 'SexyButNotPorn'] 
+reddits = ['Pics', 'WTF'] 
 
 # Desired sorting
 sort_type = 'hot' # hot, new, controversial, top
