@@ -21,21 +21,10 @@ dir = 'Saved Reddit Pics'
 ##########################################################################
 #################### DONT EDIT ANYTHING PAST HERE ########################
 ##########################################################################
-  
+
 # Generate custom Reddit URL
 def generate_custom_url(reddit_list, sort)
-  reddit_list.sort!
-  url = "http://www.reddit.com/r/"
-  reddit_list.each do |reddit|
-      url += reddit + "+"
-  end
-  url.chop!
-  if sort == 'new'
-    url += '/new?sort=new'
-  elsif sort != 'hot'
-    url += "/#{sort}"
-  end
-  url
+  "http://www.reddit.com/r/#{reddit_list.sort.join('+')}/#{sort}"
 end
 
 custom_url = generate_custom_url(reddits, sort_type)
@@ -75,7 +64,7 @@ urls.each_pair do |name, url|
 end
 
 def is_picture?(file)
-  valid = true 
+  valid = true
   valid = false if file =~ /^.+\.(?i)((bmp)|(gif)|(jpeg)|(jpg)|(png)|(tiff))$/
   valid = true  if file =~ /^.+\.(?i)(php)/
   valid
