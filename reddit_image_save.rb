@@ -121,7 +121,9 @@ end
 urls.each_pair do |name, url|
     puts "Downloading: #{name}\n\t#{url}\n\n"
     ext = url.match(/\.([^\.]+)$/).to_a.last
-    download_file(url, "#{dir}/#{sanitize(name)}.#{ext.downcase}")
+    unless File.exist?("#{dir}/#{sanitize(name)}.#{ext.downcase}")
+      download_file(url, "#{dir}/#{sanitize(name)}.#{ext.downcase}")
+    end
 end
 
 puts 'Downloading Complete'
