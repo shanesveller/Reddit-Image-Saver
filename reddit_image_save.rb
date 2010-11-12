@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'net/http'
-require 'hpricot'
 require 'uri'
-
+require 'fileutils'
+require 'crack'
 
 ##########################################################################
 ####################### YOU CAN EDIT THIS PART ###########################
@@ -24,7 +24,7 @@ dir = 'Saved Reddit Pics'
 
 # Generate custom Reddit URL
 def generate_custom_url(reddit_list, sort)
-  "http://www.reddit.com/r/#{reddit_list.sort.join('+')}/#{sort}"
+  "http://www.reddit.com/r/#{reddit_list.sort.join('+')}/#{sort}.json"
 end
 
 custom_url = generate_custom_url(reddits, sort_type)
@@ -42,14 +42,14 @@ def get_page_source(page_url)
 end
 res = get_page_source(custom_url)
 
-
 # Add URLs and Title to hash
 urls = {}
-doc = Hpricot.parse(res.body)
-(doc/'.content'/'#siteTable'/'.thing'/'.unvoted'/'.entry'/'.title'/:a/'.title').each do |link|
-  urls[link.inner_text] = link.attributes["href"]
+doc = Crack::JSON.parse(res.body)
+doc['data']['children'].each do |link|
+  urls[link['data']['title']] = link['data']['url']
 end
 puts urls.inspect
+
 # Fix ugly imgur URLs
 urls.each_pair do |name, url|
   # imgur.com -> i.imgur.com
