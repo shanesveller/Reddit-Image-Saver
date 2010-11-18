@@ -3,7 +3,7 @@ require 'rubygems'
 require 'net/http'
 require 'uri'
 require 'fileutils'
-require 'crack'
+require 'json'
 
 ##########################################################################
 ####################### YOU CAN EDIT THIS PART ###########################
@@ -44,7 +44,7 @@ res = get_page_source(custom_url)
 
 # Add URLs and Title to hash
 urls = {}
-doc = Crack::JSON.parse(res.body)
+doc = JSON.parse(res.body)
 doc['data']['children'].each do |link|
   urls[link['data']['title']] = link['data']['url']
 end
