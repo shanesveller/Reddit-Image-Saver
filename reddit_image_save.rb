@@ -48,7 +48,6 @@ doc = JSON.parse(res.body)
 doc['data']['children'].each do |link|
   urls[link['data']['title']] = link['data']['url']
 end
-puts urls.inspect
 
 # Fix ugly imgur URLs
 urls.each_pair do |name, url|
