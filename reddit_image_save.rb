@@ -28,7 +28,7 @@ def generate_custom_url(reddit_list, sort)
 end
 
 custom_url = generate_custom_url(reddits, sort_type)
-puts "Your Personal URL:  #{custom_url}\n"
+puts "Your Personal URL:  #{custom_url.gsub('.json', '')}\n"
 puts "--------------------#{print '-' * custom_url.length}"
 
 
