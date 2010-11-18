@@ -1,4 +1,5 @@
 = TODO
+Option for commend line arguments (ex. ./reddit-image-save.rb <sort> <subreddit1> <subreddit2> ...)
 Add 'all' sort_type 
 Add search time  ex. 'today', 'week', 'month', 'all'
 DOCUMENTATION!!!
